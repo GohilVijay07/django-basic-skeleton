@@ -1,0 +1,223 @@
+DJNGO: 	
+
+python:
+list tuple set dict function
+oops exception handling, var , ...
+
+frontend: Django template
+backend: Django.
+database  PostgreSQL
+
+------------------------
+python
+
+virtual env:
+
+d:
+ projects
+     Django [client name]
+	ctlr + l -->type cmd
+
+pip install virtualenv
+	create virtual env
+	python -m virtualenv venv
+        code .  : if not work --> manual
+
+	open terminal
+	change profile of terminal to cmd
+
+	enable virtual environment:
+	venv\scripts\activate
+	pip install Django
+	Django project creation
+	django-admin startproject learning26
+	
+	cd learning26
+	start Django server:
+	python manage.py runserver
+	open url :http://127.0.0.1:8000/
+
+	
+
+https://www.postgresql.org/download/windows/
+
+-->manage.py -->settings.py --> ini file learning26
+
+create folder named templates
+
+
+
+daily script
+venv\scripts\activate
+cd learning26
+python manage.py runserver
+
+-->manage.py -->settings.py --> ini file learning26
+ -->urls.py --> views.py
+---------------------------------------------
+
+ ---->database conf steps:
+ open pgadmin
+ create database
+
+ learning26-->
+
+ settings.py -->	
+
+ default': {
+       'ENGINE':'django.db.backends.postgresql',
+       'NAME':'learning26',
+       'USER':'postgres',
+       'PASSWORD':'root',
+       'HOST':'localhost',
+       'PORT':'5432',
+    }
+
+
+ python [djang0] + [postgresql]
+
+ ** vevn enable
+ pip install psycopg2-binary
+
+
+
+settings.py -->	
+
+ default': {
+       'ENGINE':'django.db.backends.postgresql',
+       'NAME':'learning26',
+       'USER':'postgres',
+       'PASSWORD':'root',
+       'HOST':'localhost',
+       'PORT':'5432',
+    }
+
+
+ migration...
+
+ python manage.py migrate
+
+ how to create superuser:
+
+ *(venv) D:\projects\2026-internship-django\learning26>
+ 
+ python manage.py createsuperuser
+
+
+ django app bases arch
+
+ 03-02-2026
+-------------------
+ location: till learning26
+
+ django-admin startapp student
+
+ __init__.py : package , constructor
+ admin.py     : admin portal registration....
+ apps.py      : app level settings
+ models.py    : database table creation
+ tests.py     : testing
+ views.py     : business logic
+
+
+ after create a[pp --> first create urls.py
+ student -->views.py --> function --> url --> student -- urls.py
+ include studet.urls ---> project level urls.py
+
+
+
+
+
+
+weekly agenda:
+ ORM start: db table creating using django models
+ custome table create data store...
+
+
+ 04-02-2026
+-------------------
+Django ORM:
+object relational mapping..
+
+
+settings.py  --> installed app
+models class -> changes db apply
+python manage.py makemigrations
+python manage.py migrate
+
+
+
+models.py --> class
+app --> settings.py --> installed app --> app name --> student
+Student --> 3 fileds tables...   make,,migrate
+1 filed add --> null true -> make ,migrate
+
+product class --> make --> migrate
+   -->2 filed --> make --> migrate
+
+   
+admin.py
+--> import .models
+--> admin.site.register(Student)
+
+database:
+
+-->normalization
+-->user  --> order
+
+user --> n --->order
+one to many
+
+user table
+order table -->FK -->userid as fk
+
+
+1 to 1 relational:
+
+user -->1 profile
+
+user table
+profile table -->FK -->userid as fk
+
+
+rnd -->> python manage.py runserver ---> runserver
+
+admin.py --> pur --> as it is
+
+
+team a    team b
+-5          10
+-5
+
+
+
+product
+id name price stock category color status discount 
+1  iphone 1200 100  mobile black true 10
+
+Product.object.filter(status=true,stock__gt=0,name="iphone").values()
+
+
+
+create new application employee
+ursl.py
+models -->Employee 
+makemigrations
+migrate
+
+admin regiter. 
+admin panel --> 2 3 emplotee add..
+
+views.py --> employeeList
+all -->query-->
+data -->employeeList.html
+-->table format..
+
+views employeeFilter
+
+filter -->
+call --
+
+dont forget call both function in urls.py --> employee
+reminder : include employee in learning26 urls py
+

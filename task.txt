@@ -1,0 +1,30 @@
+create aboutus contactus , home pages
+task:
+create a contactus with basic css design... <style></style>
+
+create movies, shows, news:
+
+
+create teams: team.html
+teamName : 
+cap:
+playerList
+trophy:
+
+if < 5  message
+---------------------------
+own:
+
+
+task:
+student app --> 3 function : student releted data dsipaly...
+
+
+
+create 6 tables:
+1 to 1 relation
+4 tables foreign key
+
+<------------------------------------------------------->
+
+create new app/not project --> name --> test --> models.py --> data dictonry all model design / classs
