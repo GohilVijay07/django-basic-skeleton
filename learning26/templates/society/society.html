@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Society Dashboard</title>
+    <style>
+        body{font-family: Arial, sans-serif;margin:20px}
+        section{margin-bottom:24px}
+        h2{margin-bottom:8px}
+        ul{list-style:none;padding:0}
+        li{padding:6px 0;border-bottom:1px solid #eee}
+    </style>
+</head>
+<body>
+    <h1>Society Dashboard</h1>
+
+    <section>
+        <h2>Residents</h2>
+        <ul>
+            {% for r in residents %}
+            <li>{{ r.flat_no }} ({{ r.wing }}) — {{ r.user.name }}</li>
+            {% empty %}
+            <li>No residents found.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Recent Notices</h2>
+        <ul>
+            {% for n in notices %}
+            <li><strong>{{ n.title }}</strong> — posted by {{ n.posted_by.name }} on {{ n.posted_on }}</li>
+            {% empty %}
+            <li>No notices.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Facilities</h2>
+        <ul>
+            {% for f in facilities %}
+            <li>{{ f.name }} — {{ f.charge }} — {% if f.available %}Available{% else %}Unavailable{% endif %}</li>
+            {% empty %}
+            <li>No facilities.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Recent Visitors</h2>
+        <ul>
+            {% for v in visitors %}
+            <li>{{ v.name }} — {{ v.flat_no }} — {{ v.entry_time }}</li>
+            {% empty %}
+            <li>No visitors.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Recent Complaints</h2>
+        <ul>
+            {% for c in complaints %}
+            <li>{{ c.category }} — {{ c.resident.flat_no }} — {{ c.status }}</li>
+            {% empty %}
+            <li>No complaints.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+</body>
+</html>
