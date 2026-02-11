@@ -1,0 +1,19 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# SQLite database (if any)
+db.sqlite3
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
