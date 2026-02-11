@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Employee
+from .forms import CourseForm, EmployeeForm, DepartmentForm, ResidentPostForm
+from django.http import HttpResponse
 
 # Create your views here.
 def employeeList(request):
@@ -51,6 +53,7 @@ def employeeFilter(request):
 
     employee18 = Employee.objects.order_by("-salary").values()    #desc
 
+
     
 
     #and
@@ -72,3 +75,44 @@ def employeeFilter(request):
     print("query 16",employee16) 
     print("query 17",employee17) 
     return render(request, 'employee/employeeFilter.html')
+
+
+def createEmployeeWithForm(request):
+    if request.method == "POST":
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Employee created successfully")
+    else:
+        form = EmployeeForm()
+    return render(request, 'employee/createEmployeeForm.html',{"form":form})
+
+def createCourseWithForm(request):
+    if request.method == "POST":
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Course created successfully")
+    else:
+        form = CourseForm()
+    return render(request, 'employee/createCourseWithForm.html',{"form":form})
+
+def createDepartmentWithForm(request):
+    if request.method == "POST":
+        form = DepartmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Department created successfully")
+    else:
+        form = DepartmentForm()
+    return render(request, 'employee/createDepartmentWithForm.html',{"form":form})
+
+def createresidentPostWithForm(request):
+    if request.method == "POST":
+        form = ResidentPostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Resident Post created successfully")
+    else:
+        form = ResidentPostForm()
+    return render(request, 'employee/createResidentPostWithForm.html',{"form":form})

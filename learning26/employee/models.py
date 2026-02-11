@@ -13,3 +13,39 @@ class Employee(models.Model):
         
     def __str__(self):
         return self.name
+
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+    duration = models.IntegerField()
+    fees = models.IntegerField()
+
+    class Meta:
+        db_table = "course"
+        
+    def __str__(self):
+        return self.name
+    
+class department(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+
+    class Meta:
+        db_table = "department"
+        
+    def __str__(self):
+        return self.name
+    
+class ResidentPost(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    content = models.TextField()
+    likes = models.ManyToManyField(Employee, related_name="liked_posts")
+
+    class Meta:
+        db_table = "residentpost"
+        
+    def __str__(self):
+        return self.name
