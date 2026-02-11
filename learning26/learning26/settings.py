@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,8 +81,8 @@ DATABASES = {
     'default': {
        'ENGINE':'django.db.backends.postgresql',
        'NAME':'learning26',
-       'USER':'postgres',
-       'PASSWORD':'Admin@123',
+       'USER':os.getenv('POSTGRES_USER', 'postgres'),
+       'PASSWORD':os.getenv('POSTGRES_PASSWORD', 'Admin@123'),
        'HOST':'localhost',
        'PORT':'5432',
     }
