@@ -1,5 +1,11 @@
 <h1>EMPLOYEE LIST</h1>
+<a href="{% url 'createEmployeeWithForm'%}">CREATE EMPLOYEE</a>
+<a href ="{% url 'filterEmployee' %}">FILTER</a>
 
+<div style="margin-top:10px;margin-bottom:10px;">
+    <a href="?sort={{ sort|default:'id' }}&dir=asc" style="padding:6px 10px;border:1px solid #888;background:#f0f0f0;text-decoration:none;margin-right:6px;">Ascending</a>
+    <a href="?sort={{ sort|default:'id' }}&dir=desc" style="padding:6px 10px;border:1px solid #888;background:#f0f0f0;text-decoration:none;">Descending</a>
+</div>
 
 {% for emp in employees  %}
     {{emp.id}}
@@ -13,12 +19,12 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Salary</th>
-            <th>Join Date</th>
-            <th>Post</th>
+            <th><a href="?sort=id&dir={% if sort == 'id' and dir == 'asc' %}desc{% else %}asc{% endif %}">ID {% if sort == 'id' %}{% if dir == 'asc' %}▲{% else %}▼{% endif %}{% endif %}</a></th>
+            <th><a href="?sort=name&dir={% if sort == 'name' and dir == 'asc' %}desc{% else %}asc{% endif %}">Name {% if sort == 'name' %}{% if dir == 'asc' %}▲{% else %}▼{% endif %}{% endif %}</a></th>
+            <th><a href="?sort=age&dir={% if sort == 'age' and dir == 'asc' %}desc{% else %}asc{% endif %}">Age {% if sort == 'age' %}{% if dir == 'asc' %}▲{% else %}▼{% endif %}{% endif %}</a></th>
+            <th><a href="?sort=salary&dir={% if sort == 'salary' and dir == 'asc' %}desc{% else %}asc{% endif %}">Salary {% if sort == 'salary' %}{% if dir == 'asc' %}▲{% else %}▼{% endif %}{% endif %}</a></th>
+            <th><a href="?sort=join_date&dir={% if sort == 'join_date' and dir == 'asc' %}desc{% else %}asc{% endif %}">Join Date {% if sort == 'join_date' %}{% if dir == 'asc' %}▲{% else %}▼{% endif %}{% endif %}</a></th>
+            <th><a href="?sort=post&dir={% if sort == 'post' and dir == 'asc' %}desc{% else %}asc{% endif %}">Post {% if sort == 'post' %}{% if dir == 'asc' %}▲{% else %}▼{% endif %}{% endif %}</a></th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +36,9 @@
             <td>{{emp.salary}}</td>
             <td>{{emp.join_date}}</td>
             <td>{{emp.post}}</td>
+
+            <td><a href="/employee/deleteEmployee/{{emp.id}}/">Delete</a></td>
+            <td><a href="/employee/updateEmployee/{{emp.id}}/">Update</a></td>
         </tr>
         {% endfor %}
     </tbody>

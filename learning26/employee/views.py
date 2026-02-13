@@ -1,15 +1,20 @@
-from django.shortcuts import render # type: ignore
+from django.shortcuts import render,HttpResponse,redirect
 from .models import Employee
-from .forms import CourseForm, EmployeeForm, DepartmentForm, ResidentPostForm
-from django.http import HttpResponse # type: ignore
+from .forms import EmployeeForm,CourseForm
 
 # Create your views here.
 def employeeList(request):
-    #employees = Employee.objects.all() #select * from employee
-    employees = Employee.objects.all().values()
+    # support ordering via query params: ?sort=field&dir=asc|desc
+    sort = request.GET.get('sort', 'id')
+    direction = request.GET.get('dir', 'asc')
+    allowed = ['id', 'name', 'age', 'salary', 'join_date', 'post']
+    if sort not in allowed:
+        sort = 'id'
+    order = sort if direction == 'asc' else f"-{sort}"
+    employees = Employee.objects.order_by(order).values()
     #employees = Employee.objects.all().values_list()
     print(employees)
-    return render(request, 'employee/employeeList.html',{"employees":employees})
+    return render(request, 'employee/employeeList.html',{"employees":employees, 'sort': sort, 'dir': direction})
 
 def employeeFilter(request):
     #where select  from employee where name = "raj"
@@ -78,11 +83,13 @@ def employeeFilter(request):
 
 
 def createEmployeeWithForm(request):
+    
     if request.method == "POST":
         form = EmployeeForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Employee created successfully")
+            return redirect("employeeList")
+            #return HttpResponse("Employee created successfully")
     else:
         form = EmployeeForm()
     return render(request, 'employee/createEmployeeForm.html',{"form":form})
@@ -115,4 +122,30 @@ def createresidentPostWithForm(request):
             return HttpResponse("Resident Post created successfully")
     else:
         form = ResidentPostForm()
+    
     return render(request, 'employee/createResidentPostWithForm.html',{"form":form})
+
+def deleteEmployee(request, id):
+   print("id from url = ", id)
+   Employee.objects.filter(id=id).delete()
+   return redirect("employeeList")   
+
+def filterEmployee(request):
+    print("filter employee called...")
+    employees = Employee.objects.filter(age__gte=25).values()
+    print("filter employees = ",employees)
+    #return redirect("employeeList")
+    return render(request,"employee/employeeList.html",{"employees":employees}) 
+
+def updateEmployee(request, id):    
+    employee = Employee.objects.get(id=id)#select * from employee where id = id
+    if request.method == "POST":
+        form = EmployeeForm(request.POST, instance=employee)
+        if form.is_valid():
+            form.save()
+            return redirect("employeeList")
+            #return HttpResponse("Employee updated successfully")
+    else:
+        form = EmployeeForm(instance=employee)
+    return render(request, 'employee/updateEmployeeForm.html',{"form":form})
+
