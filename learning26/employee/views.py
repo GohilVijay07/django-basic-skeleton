@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import render,HttpResponse,redirect # type: ignore
 from .models import Employee
 from .forms import EmployeeForm,CourseForm
 
@@ -106,22 +106,22 @@ def createCourseWithForm(request):
 
 def createDepartmentWithForm(request):
     if request.method == "POST":
-        form = DepartmentForm(request.POST)
+        form = DepartmentForm(request.POST) # type: ignore
         if form.is_valid():
             form.save()
             return HttpResponse("Department created successfully")
     else:
-        form = DepartmentForm()
+        form = DepartmentForm()# type: ignore
     return render(request, 'employee/createDepartmentWithForm.html',{"form":form})
 
 def createresidentPostWithForm(request):
     if request.method == "POST":
-        form = ResidentPostForm(request.POST)
+        form = ResidentPostForm(request.POST)# type: ignore
         if form.is_valid():
             form.save()
             return HttpResponse("Resident Post created successfully")
     else:
-        form = ResidentPostForm()
+        form = ResidentPostForm()# type: ignore
     
     return render(request, 'employee/createResidentPostWithForm.html',{"form":form})
 
