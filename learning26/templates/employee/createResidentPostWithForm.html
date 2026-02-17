@@ -1,5 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
 <h1>Resident Post created successfully</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Create Resident Post</button>
+</form>
+{% endblock %}

@@ -13,8 +13,8 @@
             <div class="logo">My Django App</div>
             <div class="links">
                 <a href="/">Home</a>
-                <a href="/employee/">Employees</a>
-                <a href="/services/">Services</a>
+                <a href="{% url 'employeeList' %}">Employees</a>
+                <a href="{% url 'serviceList' %}">Services</a>
             </div>
         </nav>
     </header>
