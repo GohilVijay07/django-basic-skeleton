@@ -32,5 +32,11 @@ def updateService(request, id):
 
 
 def deleteService(request, id):
-    Service.objects.filter(id=id).delete()
-    return redirect("serviceList")
+    service = Service.objects.get(id=id)
+    if request.method == "POST":
+        service.delete()
+        return redirect("serviceList")
+    return render(request, 'services/deleteServiceConfirm.html', {"service": service})
+
+
+

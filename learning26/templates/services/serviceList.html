@@ -25,8 +25,8 @@
             <td>{{ s.price }}</td>
             <td>{{ s.is_active }}</td>
             <td>{{ s.created_at }}</td>
-            <td><a href="/services/deleteService/{{ s.id }}/">Delete</a></td>
-            <td><a href="/services/updateService/{{ s.id }}/">Update</a></td>
+            <td><a href="{% url 'deleteService' s.id %}" class="btn btn-sm btn-danger\">Delete</a></td>
+            <td><a href="{% url 'updateService' s.id %}" class="btn btn-sm btn-warning\">Update</a></td>\n        </tr>
         </tr>
         {% endfor %}
     </tbody>
