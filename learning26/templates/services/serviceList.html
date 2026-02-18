@@ -1,34 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>SERVICE LIST</h1>
-<a href="{% url 'createServiceWithForm' %}">CREATE SERVICE</a>
+<div class="container mt-5">
+    <h1 class="mb-4">SERVICE LIST</h1>
+    <a href="{% url 'createServiceWithForm' %}" class="btn btn-primary mb-3">CREATE SERVICE</a>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Active</th>
-            <th>Created</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for s in services %}
-        <tr>
-            <td>{{ s.id }}</td>
-            <td>{{ s.name }}</td>
-            <td>{{ s.description }}</td>
-            <td>{{ s.price }}</td>
-            <td>{{ s.is_active }}</td>
-            <td>{{ s.created_at }}</td>
-            <td><a href="{% url 'deleteService' s.id %}" class="btn btn-sm btn-danger\">Delete</a></td>
-            <td><a href="{% url 'updateService' s.id %}" class="btn btn-sm btn-warning\">Update</a></td>\n        </tr>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Active</th>
+                <th>Created</th>
+                <th colspan="2" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in services %}
+            <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.description }}</td>
+                <td>${{ s.price }}</td>
+                <td>
+                    {% if s.is_active %}
+                        <span class="badge bg-success">Active</span>
+                    {% else %}
+                        <span class="badge bg-danger">Inactive</span>
+                    {% endif %}
+                </td>
+                <td>{{ s.created_at|date:"Y-m-d" }}</td>
+                <td>
+                    <a href="{% url 'updateService' s.id %}" class="btn btn-sm btn-warning">Edit</a>
+                </td>
+                <td>
+                    <a href="{% url 'deleteService' s.id %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" class="text-center text-muted">No services found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

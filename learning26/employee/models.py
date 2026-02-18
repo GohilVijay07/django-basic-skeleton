@@ -25,7 +25,7 @@ class Course(models.Model):
     def __str__(self):
         return self.name
     
-class department(models.Model):
+class Department(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     title = models.CharField(max_length=100)

@@ -1,9 +1,76 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Resident Post created successfully</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Resident Post</button>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="mb-4">CREATE RESIDENT POST</h1>
+            
+            <!-- Non-form errors -->
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Please correct the following errors:</strong>
+                    <ul class="mb-0 mt-2">
+                    {% for error in form.non_field_errors %}
+                        <li style="color: #dc3545; font-weight: 600;">{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            <form method="post" class="form-container" novalidate>
+                {% csrf_token %}
+                
+                <!-- Name Field -->
+                <div class="form-group mb-3">
+                    <label for="{{ form.name.id_for_label }}" class="form-label">Post Name</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div style="color: #dc3545; font-weight: 600; font-size: 14px; margin-top: 5px; padding: 8px 12px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px;">
+                            {{ form.name.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Location Field -->
+                <div class="form-group mb-3">
+                    <label for="{{ form.location.id_for_label }}" class="form-label">Location</label>
+                    {{ form.location }}
+                    {% if form.location.errors %}
+                        <div style="color: #dc3545; font-weight: 600; font-size: 14px; margin-top: 5px; padding: 8px 12px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px;">
+                            {{ form.location.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Author Field -->
+                <div class="form-group mb-3">
+                    <label for="{{ form.author.id_for_label }}" class="form-label">Author</label>
+                    {{ form.author }}
+                    {% if form.author.errors %}
+                        <div style="color: #dc3545; font-weight: 600; font-size: 14px; margin-top: 5px; padding: 8px 12px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px;">
+                            {{ form.author.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Content Field -->
+                <div class="form-group mb-4">
+                    <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+                    {{ form.content }}
+                    {% if form.content.errors %}
+                        <div style="color: #dc3545; font-weight: 600; font-size: 14px; margin-top: 5px; padding: 8px 12px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px;">
+                            {{ form.content.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Buttons -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Create Resident Post</button>
+                    <a href="{% url 'employeeList' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

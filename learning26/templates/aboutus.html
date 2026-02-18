@@ -1,12 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>About Us</h1>
-    <h2>............</h2>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4">About Us</h1>
+            
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Our Mission</h5>
+                    <p class="card-text">
+                        We are dedicated to providing a comprehensive learning platform for Django developers.
+                        Our mission is to make web development accessible and intuitive for everyone.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">What We Offer</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Professional Django Project Structure</li>
+                        <li class="list-group-item">PostgreSQL Database Integration</li>
+                        <li class="list-group-item">Bootstrap 5 Responsive Design</li>
+                        <li class="list-group-item">Form Validation & Error Handling</li>
+                        <li class="list-group-item">CRUD Operations with Best Practices</li>
+                        <li class="list-group-item">Admin Panel Configuration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Our Team</h5>
+                    <p class="card-text">
+                        Built by passionate developers and Django enthusiasts who believe in the power of quality education.
+                        We're committed to making learning Django simple and effective.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,14 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Home</h1>   
-</body>
-</html>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="jumbotron" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 20px; border-radius: 10px; text-align: center;">
+                <h1 class="display-3 mb-4">Welcome to My Django App</h1>
+                <p class="lead mb-4">A professional Django + PostgreSQL learning project built with modern best practices</p>
+                <hr class="bg-white" style="opacity: 0.5;">
+                <p class="lead">
+                    <a class="btn btn-light btn-lg" href="{% url 'employeeList' %}" role="button">View Employees</a>
+                    <a class="btn btn-light btn-lg" href="{% url 'serviceList' %}" role="button">View Services</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-users"></i> Employee Management</h5>
+                    <p class="card-text">Manage all employee information, salaries, positions, and join dates efficiently.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-briefcase"></i> Service Management</h5>
+                    <p class="card-text">Create, update, and manage services with pricing and descriptions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-cogs"></i> Advanced Features</h5>
+                    <p class="card-text">Database integration, form validation, and responsive design with Bootstrap.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
